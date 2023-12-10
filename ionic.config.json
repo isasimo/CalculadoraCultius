@@ -1,0 +1,7 @@
+{
+  "name": "CalculadoraCultius",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
