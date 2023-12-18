@@ -1,0 +1,112 @@
+/* Home */
+.content-space {
+  --ion-safe-area-top: 50px;
+  --ion-safe-area-bottom: 20px;
+  --ion-safe-area-left: 20px;
+  --ion-safe-area-right: 20px;
+}
+
+ion-content::part(scroll) {
+  padding-top: var(--ion-safe-area-top, 0);
+  padding-bottom: var(--ion-safe-area-bottom, 0);
+  padding-left: var(--ion-safe-area-left, 0);
+  padding-right: var(--ion-safe-area-right, 0);
+}
+
+.ion-text-center {
+  display: flex;
+  align-items: center;
+}
+
+/* Large devices (desktops) */
+@media (min-width: 700px) {
+  .content-max {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.chip-style {
+  border-radius: 8px;
+  padding: 10px 12px;
+  width: 100%;
+}
+
+.save-button {
+  margin: 20px 0 40px;
+}
+
+/* Bed Distance */
+.space-text {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 0.9;
+    margin: 0;
+}
+
+.space-description {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 60px;
+}
+
+/* Crop */
+.chip-text {
+  color: #0C0C0C;
+}
+.chip-space{
+  margin-left: 10px;
+}
+
+/* Crop Result */
+.result-section{
+  margin: 24px 0;
+}
+.result-text {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 0.9;
+  margin: 0;
+}
+.result-description {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Saved data card */
+.card {
+  width: 100%;
+  display: flex; 
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.container-emoji {
+  width: 40px;
+  height: 40px;
+  padding-top: 8px;
+  text-align: center;
+  border-radius: 8px;
+}
+.container-main {
+  flex-grow: 1;    
+}
+.card-title {
+  text-align: start;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.card-description {
+  text-align: start;
+  font-size: 0.7rem;
+}
+.card-result {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.card-result span{
+  font-size: 14px;
+  margin-right: 8px;
+} 
