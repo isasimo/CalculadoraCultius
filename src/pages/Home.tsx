@@ -1,4 +1,4 @@
-/** @format */
+// Home is responsible for the main functionality of the app
 
 import React, { useState, useEffect } from "react";
 import { IonContent, IonPage, IonButton, IonHeader, IonToolbar, IonTitle, IonIcon, IonLabel } from "@ionic/react";
@@ -13,12 +13,18 @@ import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
 
 const Home: React.FC = () => {
+  // Initialize i18n translation
   const { t } = useTranslation();
+
+  // Crop list initialization
   const cropList = CropList(t);
+
+  // Change language function
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
   };
 
+  // State variables
   const [bedDistance, setBedDistance] = useState<number>(10);
   const [selectedCrop, setSelectedCrop] = useState<string>(t("tomato"));
   const initialSavedData: {
@@ -27,14 +33,14 @@ const Home: React.FC = () => {
     result: number;
   }[] = [];
   const [savedData, setSavedData] = useState(initialSavedData);
-
-  // get from cropData??
   const [cropSpace, setCropSpace] = useState<number>(0.4);
 
+  // Handles crop selection
   const handleCropSelected = (selectedCrop: string) => {
     setSelectedCrop(selectedCrop);
   };
 
+  // Handles saving calculated data
   const handleSave = () => {
     const selectedCropObj = cropList.find((crop) => crop.label === selectedCrop);
     if (selectedCropObj) {
@@ -63,6 +69,7 @@ const Home: React.FC = () => {
     loadSavedData();
   }, []);
 
+  // Render the main page
   return (
     <IonPage id="ion-modal-example" className="ion-text-center">
       <IonHeader>
@@ -72,16 +79,24 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="content-space content-max">
+        {/* Bed distance modal */}
         <BedDistance setBedDistance={setBedDistance} />
+
+        {/* Crop selection modal */}
         <Crop setCropSpace={setCropSpace} onCropSelected={handleCropSelected} selectedCrop={selectedCrop} cropList={cropList} />
+
+        {/* Result of crop spacing calculation */}
         <CropResult cropSpace={cropSpace} bedDistance={bedDistance} />
+
+        {/* Save button */}
         <IonButton expand="block" className="save-button" onClick={handleSave}>
           <IonLabel>{t("save")}</IonLabel>
         </IonButton>
+
+        {/* Display saved historical data cards if available */}
         {savedData.length > 0 && (
           <div>
             {savedData.map((data, index) => (
-              // move this logic to Component?
               <SavedDataCard
                 key={index}
                 data={data}

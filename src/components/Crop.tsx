@@ -1,4 +1,4 @@
-/** @format */
+// Crop component is responsible for crop selection
 
 import React, { useState, useRef, useEffect } from "react";
 import { IonChip, IonModal, IonButton, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonList, IonItem, IonLabel } from "@ionic/react";
@@ -13,15 +13,20 @@ interface CropProps {
   cropList: CropData[];
 }
 
+// Function to get color for a crop
 const getColorForCrop = (crop: CropData): string => {
   const cropColorName = crop.color || "white";
   return (colorPalette as Record<string, string>)[cropColorName] || "white";
 };
 
 const Crop: React.FC<CropProps> = ({ setCropSpace, onCropSelected, selectedCrop }) => {
+  // Initialize i18n translation
   const { t } = useTranslation();
+
+  // Crop list initialization
   const cropList = CropList(t);
 
+  // State variable for modal visibility
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const modal = useRef<HTMLIonModalElement>(null);
 
@@ -32,14 +37,17 @@ const Crop: React.FC<CropProps> = ({ setCropSpace, onCropSelected, selectedCrop 
     }
   }, []);
 
+  // Function to open the modal
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
+  // Function to close the modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
+  // Function to handle crop chip click
   const handleChipClick = (cropLabel: string) => {
     const selectedCropObj = cropList.find((crop) => crop.label === cropLabel);
     if (selectedCropObj) {
@@ -49,15 +57,19 @@ const Crop: React.FC<CropProps> = ({ setCropSpace, onCropSelected, selectedCrop 
     handleCloseModal();
   };
 
+  // Get color for the selected crop
   const getColor = selectedCrop ? getColorForCrop(cropList.find((crop) => crop.label === selectedCrop) || cropList[0]) : "white";
   const chipText = selectedCrop ? t(selectedCrop) : "";
 
+  // Render the crop chip and selection modal
   return (
     <>
+      {/* Crop chip */}
       <IonChip className="custom-chip chip-text" onClick={handleOpenModal} style={{ backgroundColor: getColor }}>
         {selectedCrop && cropList.find((crop) => crop.label === selectedCrop)?.emoji} {chipText}
       </IonChip>
 
+      {/* Crop selection modal */}
       <IonModal isOpen={isModalOpen} ref={modal} trigger="open-modal" presentingElement={document.getElementById("ion-modal-example") || undefined} className="custom-modal" onDidDismiss={handleCloseModal}>
         <IonHeader>
           <IonToolbar>

@@ -1,3 +1,5 @@
+// CropResult component is displaying the calculated crop spacing result
+
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -7,7 +9,10 @@ interface CropResultProps {
 }
 
 const CropResult: React.FC<CropResultProps> = ({ cropSpace, bedDistance }) => {
+  // Initialize i18n translation
   const { t } = useTranslation();
+
+  // State variable for the calculated result
   const [result, setResult] = useState<number>(0);
 
   useEffect(() => {
@@ -30,23 +35,18 @@ const CropResult: React.FC<CropResultProps> = ({ cropSpace, bedDistance }) => {
           {emoji}
         </div>
       ));
-      rows.push(
-        <div key={i / emojisPerRow}>
-          {rowEmojis}
-        </div>
-      );
+      rows.push(<div key={i / emojisPerRow}>{rowEmojis}</div>);
     }
 
     // Add "..." if maxEmojis
     if (count > maxEmojis) {
-      rows.push(
-        <div key="ellipsis">...</div>
-      );
+      rows.push(<div key="ellipsis">...</div>);
     }
 
     return rows;
   };
 
+  // Render the result section with emojis
   return (
     <div>
       <div className="result-section">
