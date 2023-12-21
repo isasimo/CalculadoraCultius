@@ -15,34 +15,32 @@ const CropResult: React.FC<CropResultProps> = ({ cropSpace, bedDistance }) => {
     setResult(Math.floor(bedDistance / cropSpace));
   }, [cropSpace, bedDistance]);
 
-  // Function to create a grid of emojis with a maximum of 10 emojis per line
+  // Function to create a grid of emojis
   const createEmojiGrid = (count: number): JSX.Element[] => {
     const maxEmojis = 50;
-    const emojisToShow = Math.min(count, maxEmojis);
     const emojisPerRow = 10;
+    const emojisToShow = Math.min(count, maxEmojis);
     const emoji = "🌱";
 
     // Create rows of emojis
     const rows = [];
     for (let i = 0; i < emojisToShow; i += emojisPerRow) {
       const rowEmojis = Array.from({ length: Math.min(emojisPerRow, emojisToShow - i) }, (_, index) => (
-        <div key={i + index} style={{ display: "inline-block", margin: "2px", textAlign: "center" }}>
+        <div key={i + index} className="result-emojis">
           {emoji}
         </div>
       ));
       rows.push(
-        <div key={i / emojisPerRow} style={{ marginBottom: "5px" }}>
+        <div key={i / emojisPerRow}>
           {rowEmojis}
         </div>
       );
     }
 
-    // Add an ellipsis if there are more than 50 plants
+    // Add "..." if maxEmojis
     if (count > maxEmojis) {
       rows.push(
-        <div key="ellipsis" style={{ display: "inline-block", margin: "2px", textAlign: "center" }}>
-          ...
-        </div>
+        <div key="ellipsis">...</div>
       );
     }
 
@@ -55,7 +53,7 @@ const CropResult: React.FC<CropResultProps> = ({ cropSpace, bedDistance }) => {
         <p className="result-text">{result}</p>
         <p className="result-description">{t("plants")}</p>
       </div>
-      <div style={{ marginTop: "10px" }}>{createEmojiGrid(result)}</div>
+      <div>{createEmojiGrid(result)}</div>
     </div>
   );
 };

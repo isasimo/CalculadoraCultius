@@ -24,7 +24,7 @@ const BedDistance: React.FC<BedDistanceProps> = ({ setBedDistance }) => {
   };
 
   const handleCloseModal = () => {
-    // Convert the current input value to a number or default to 0 if it's not a valid number
+    // Convert input to a number or set to 0 if it's not a valid number
     const newBedDistance = isNaN(parseFloat(bedDistance.toString())) ? 0 : parseFloat(bedDistance.toString());
 
     setBedDistance(newBedDistance);

@@ -1,4 +1,9 @@
-/* Home */
+/**
+ * Home
+ *
+ * @format
+ */
+
 .content-space {
   --ion-safe-area-top: 50px;
   --ion-safe-area-bottom: 20px;
@@ -18,7 +23,8 @@ ion-content::part(scroll) {
   align-items: center;
 }
 
-/* Large devices (desktops) */
+/* Limit width content  on larger devices */
+
 @media (min-width: 700px) {
   .content-max {
     max-width: 600px;
@@ -26,41 +32,44 @@ ion-content::part(scroll) {
   }
 }
 
-.chip-style {
-  border-radius: 8px;
-  padding: 10px 12px;
-  width: 100%;
-}
-
 .save-button {
   margin: 20px 0 40px;
 }
 
 /* Bed Distance */
-.space-text {
-    font-size: 4rem;
-    font-weight: 800;
-    line-height: 0.9;
-    margin: 0;
-}
 
+.space-text {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 0.9;
+  margin: 0;
+}
 .space-description {
-    font-size: 1rem;
-    font-weight: 400;
-    margin: 0;
-    margin-bottom: 60px;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 60px;
 }
 
 /* Crop */
-.chip-text {
-  color: #0C0C0C;
+
+.chip-style {
+  border-radius: 8px;
+  padding: 10px 12px;
+  width: 100%;
+  color: #0c0c0c;
 }
-.chip-space{
+.chip-text {
+  color: #0c0c0c;
+}
+/* TRY DIRECTLY WITH IONIC MARGIN */
+.chip-space {
   margin-left: 10px;
 }
 
 /* Crop Result */
-.result-section{
+
+.result-section {
   margin: 24px 0;
 }
 .result-text {
@@ -74,24 +83,30 @@ ion-content::part(scroll) {
   font-weight: 400;
   margin: 0;
 }
+.result-emojis {
+  display: inline-block;
+  margin: 3px;
+  margin-bottom: 5px;
+}
 
-/* Saved data card */
+/* Saved Data Card */
+
 .card {
   width: 100%;
-  display: flex; 
+  display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
 }
-.container-emoji {
+.card-emoji {
   width: 40px;
   height: 40px;
   padding-top: 8px;
   text-align: center;
   border-radius: 8px;
 }
-.container-main {
-  flex-grow: 1;    
+.card-container {
+  flex-grow: 1;
 }
 .card-title {
   text-align: start;
@@ -106,7 +121,7 @@ ion-content::part(scroll) {
   font-weight: 600;
   font-size: 1.1rem;
 }
-.card-result span{
+.card-result span {
   font-size: 14px;
   margin-right: 8px;
-} 
+}

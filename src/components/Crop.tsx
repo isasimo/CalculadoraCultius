@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState, useRef, useEffect } from "react";
 import { IonChip, IonModal, IonButton, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonList, IonItem, IonLabel } from "@ionic/react";
 import { CropData, CropList } from "../utils/cropData";

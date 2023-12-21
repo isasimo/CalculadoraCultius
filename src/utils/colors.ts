@@ -1,11 +1,9 @@
-// colors.ts
 export const colorPalette = {
   red: "#F7B5B5",
   green: "#C6EDA2",
   yellow: "#FCE183",
   purple: "#F7B5F4",
   orange: "#F5C48A",
-  // Add more colors as needed
 } as const;
 
 // Define CSS variables for each color

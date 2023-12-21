@@ -1,4 +1,3 @@
-// SavedDataCard.tsx
 import React from "react";
 import { IonButton, IonIcon } from "@ionic/react";
 import { removeCircle } from "ionicons/icons";
@@ -8,9 +7,9 @@ import { colorPalette } from "../utils/colors";
 import { useTranslation } from "react-i18next";
 
 interface SavedDataCardProps {
-  data: { cropId: string; bedDistance: number; result: number }; // Change cropLabel to cropIndex
+  data: { cropId: string; bedDistance: number; result: number };
   onDelete: () => void;
-  savedData: { cropId: string; bedDistance: number; result: number }[]; // Change cropLabel to cropIndex
+  savedData: { cropId: string; bedDistance: number; result: number }[];
 }
 
 const SavedDataCard: React.FC<SavedDataCardProps> = ({ data, onDelete, savedData }) => {
@@ -26,19 +25,19 @@ const SavedDataCard: React.FC<SavedDataCardProps> = ({ data, onDelete, savedData
     Preferences.set({ key: "savedData", value: JSON.stringify(updatedSavedData) });
   };
 
-  const cropId = data.cropId || 0; // Retrieve the saved index
+  const cropId = data.cropId || 0;
   const selectedCropObj = translatedCropList.find((crop) => crop.id === cropId);
 
-  // Find the color for the current crop from colorPalette
+  // Find the color for the current crop
   const cropColorName = selectedCropObj?.color || "white";
   const cropColor = (colorPalette as Record<string, string>)[cropColorName] || "white";
 
   return (
     <div className="card">
-      <div className="container-emoji" style={{ backgroundColor: cropColor }}>
+      <div className="card-emoji" style={{ backgroundColor: cropColor }}>
         {selectedCropObj?.emoji}
       </div>
-      <div className="container-main">
+      <div className="card-container">
         <div className="card-title">{t(selectedCropObj?.label || "")}</div>
         <div className="card-description">{`${data.bedDistance}m / ${selectedCropObj?.spacing}`}</div>
       </div>
