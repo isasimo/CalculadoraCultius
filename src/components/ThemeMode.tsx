@@ -10,21 +10,22 @@ const ThemeMode: React.FC = () => {
 
   // Use effect to initialize the dark mode based on user preferences
   useEffect(() => {
-    // Check if dark mode is preferred
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-    setIsDarkMode(prefersDark.matches);
-
-    // Function to update the preferred mode based on changes in user preferences
-    const updateMode = (mediaQuery: MediaQueryListEvent) => {
-      setIsDarkMode(mediaQuery.matches);
+    // checks the local storage for the user's saved theme preference
+    const initializeTheme = async () => {
+      const { value } = await Preferences.get({ key: "isDark" });
+      // Check if dark mode is preferred
+      if (value !== null) {
+        const savedIsDarkMode = value === "true";
+        setIsDarkMode(savedIsDarkMode);
+        document.body.classList.toggle("dark", savedIsDarkMode);
+      } else {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        setIsDarkMode(prefersDark);
+        document.body.classList.toggle("dark", prefersDark);
+      }
     };
 
-    // Add event listener for changes in user preferences
-    prefersDark.addEventListener("change", updateMode);
-
-    return () => {
-      prefersDark.removeEventListener("change", updateMode);
-    };
+    initializeTheme();
   }, []);
 
   // Function to toggle dark theme and update preferences
