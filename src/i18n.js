@@ -9,7 +9,7 @@ i18n
     resources: {
       en: {
         translation: {
-          title: "Crop Calculator",
+          title: "Veggie Calculator",
           save: "Save",
           close: "Close",
           distance: "meters",
